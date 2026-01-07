@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="noten.Pages.DashboardPage"
+             Title="Dashboard">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            
+            <!-- Durchschnitt Section -->
+            <Frame>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Durchschnittsnote" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="Black" />
+                    <Label x:Name="AverageLabel" 
+                           Text="—" 
+                           FontSize="32" 
+                           HorizontalOptions="Center" 
+                           TextColor="Black" />
+                    <Label Text="Basierend auf allen eingetragenen Noten" 
+                           FontSize="12" 
+                           HorizontalOptions="Center" 
+                           TextColor="Gray" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Meine Fächer Section -->
+            <Frame>
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout>
+                        <Label Text="Meine Fächer" 
+                               FontSize="16" 
+                               FontAttributes="Bold" 
+                               TextColor="Black" />
+                        <!-- FEHLENDER BUTTON WIEDER HINZUFÜGEN -->
+                        <Button Text="Fach hinzufügen" 
+                                Clicked="OnAddSubjectClicked"
+                                HorizontalOptions="EndAndExpand" 
+                                BackgroundColor="Transparent"
+                                TextColor="#007AFF"
+                                BorderWidth="0"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Leerer State - wird angezeigt wenn keine Fächer -->
+                    <StackLayout x:Name="EmptySubjectsView" 
+                                 IsVisible="True" 
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Spacing="16">
+                        <Image Source="folder.png" 
+                               WidthRequest="64" 
+                               HeightRequest="64"
+                               HorizontalOptions="Center"/>
+                        <Label Text="Noch keine Fächer" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               TextColor="Black" />
+                        <Label Text="Füge dein erstes Fach hinzu, um deine Noten zu verwalten" 
+                               FontSize="14"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Gray" />
+                        <!-- BUTTON KORRIGIEREN: OnAddSubjectClicked statt OnSubjectsClicked -->
+                        <Button Text="Erstes Fach hinzufügen" 
+                                Clicked="OnAddSubjectClicked"  
+                                HorizontalOptions="Center"
+                                BackgroundColor="#007AFF"
+                                TextColor="White"
+                                CornerRadius="8"
+                                Padding="20,12"/>
+                    </StackLayout>
+
+                    <!-- Fächerliste - wird angezeigt wenn Fächer vorhanden -->
+                    <CollectionView x:Name="SubjectsCollection" 
+                                    SelectionMode="Single"
+                                    IsVisible="False">
+                        <!-- In der DataTemplate der SubjectsCollection -->
+<CollectionView.ItemTemplate>
+    <DataTemplate x:DataType="x:String">
+        <Frame Margin="0,4" 
+               Padding="16,12"
+               BackgroundColor="#F5F5F7"
+               HasShadow="False"
+               CornerRadius="8">
+            <HorizontalStackLayout>
+                <Label Text="{Binding}" 
+                       VerticalOptions="Center" 
+                       TextColor="Black"
+                       FontSize="16"/>
+                <Label Text="—" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="EndAndExpand"
+                       TextColor="Gray"
+                       FontSize="16"/>
+                <!-- Optional: Delete Button -->
+                <Button Text="✕" 
+                        Clicked="OnRemoveSubjectClicked"
+                        CommandParameter="{Binding}"
+                        BackgroundColor="Transparent"
+                        TextColor="#FF3B30"
+                        FontSize="16"
+                        WidthRequest="44"/>
+            </HorizontalStackLayout>
+        </Frame>
+    </DataTemplate>
+</CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Schnellzugriff Buttons -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto" ColumnSpacing="12">
+                <Frame Grid.Column="0">
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Fill"
+                                         VerticalOptions="Fill">
+                        <Button x:Name="AddGradeButton" 
+                                Text="Note hinzufügen" 
+                                Clicked="OnAddGradeClicked"
+                                BackgroundColor="#34C759"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="120">
+                            <Button.ImageSource>
+                                <FontImageSource Glyph="+" 
+                                                 FontFamily="MaterialIcons"
+                                                 Color="White"
+                                                 Size="32"/>
+                            </Button.ImageSource>
+                        </Button>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Column="1">
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="Analytics" 
+                                Clicked="OnAnalyticsClicked"
+                                BackgroundColor="#5856D6"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="120">
+                            <Button.ImageSource>
+                                <FontImageSource Glyph="📊" 
+                                                 Color="White"
+                                                 Size="24"/>
+                            </Button.ImageSource>
+                        </Button>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

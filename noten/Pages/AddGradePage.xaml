@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:System="clr-namespace:System;assembly=System.Runtime"
+             x:Class="noten.Pages.AddGradePage"
+             Title="Note hinzufügen">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Header -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Note erfassen" 
+                       FontSize="28" 
+                       FontAttributes="Bold"
+                       TextColor="Black" />
+                <Label Text="Fülle alle Felder aus um eine neue Note hinzuzufügen"
+                       FontSize="14"
+                       TextColor="#666666" />
+            </VerticalStackLayout>
+
+            <!-- Formular -->
+            <Frame Padding="0"
+                   BackgroundColor="White"
+                   BorderColor="#E5E5EA"
+                   CornerRadius="12"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="16" Padding="20">
+                    
+                    <!-- Fach Section -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Fach *" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Frame BackgroundColor="#F8F8F8"
+                               BorderColor="#E5E5EA"
+                               CornerRadius="8"
+                               Padding="16,0"
+                               HasShadow="False"
+                               HeightRequest="52">
+                            <Picker x:Name="SubjectPicker" 
+                                    BackgroundColor="Transparent"
+                                    TextColor="#000000"
+                                    TitleColor="#8E8E93"
+                                    FontSize="16"
+                                    HorizontalOptions="FillAndExpand" />
+                        </Frame>
+                        <Label Text="Wählen Sie ein Fach aus der Liste"
+                               FontSize="12"
+                               TextColor="#666666" />
+                    </VerticalStackLayout>
+
+                    <!-- Note Section -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Note *" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Entry x:Name="GradeEntry" 
+                               Placeholder="z.B. 5.5" 
+                               Keyboard="Numeric"
+                               BackgroundColor="#F8F8F8"
+                               TextColor="#000000"
+                               PlaceholderColor="#8E8E93"
+                               FontSize="16"
+                               HeightRequest="52" />
+                        <Label Text="Geben Sie eine Note zwischen 1.0 und 6.0 ein"
+                               FontSize="12"
+                               TextColor="#666666" />
+                    </VerticalStackLayout>
+
+                    <!-- Datum Section -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Datum" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <DatePicker x:Name="WhenPicker" 
+                                    BackgroundColor="#F8F8F8"
+                                    TextColor="#000000"
+                                    FontSize="16"
+                                    HeightRequest="52"
+                                   />
+                    </VerticalStackLayout>
+
+                    <!-- Gewichtung Section -->
+                    <VerticalStackLayout Spacing="6">
+                        <HorizontalStackLayout>
+                            <Label Text="Gewichtung" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="Black" />
+                            <Label x:Name="WeightLabel" 
+                                   Text="10%"
+                                   FontSize="16"
+                                   HorizontalOptions="EndAndExpand"
+                                   TextColor="#007AFF" />
+                        </HorizontalStackLayout>
+                        <Slider x:Name="WeightSlider" 
+                                Minimum="0" 
+                                Maximum="100" 
+                                Value="10"
+                                MinimumTrackColor="#007AFF"
+                                MaximumTrackColor="#E5E5EA"
+                                ThumbColor="#007AFF" />
+                        <Label Text="Bestimmen Sie wie wichtig diese Note ist (0-100%)"
+                               FontSize="12"
+                               TextColor="#666666" />
+                    </VerticalStackLayout>
+
+                    <!-- Buttons -->
+                    <HorizontalStackLayout Spacing="12" 
+                                           Padding="0,20,0,0">
+                        <Button Text="Abbrechen" 
+                                Clicked="OnCancelClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="#007AFF"
+                                BorderColor="#007AFF"
+                                BorderWidth="1"
+                                CornerRadius="8"
+                                HeightRequest="52"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="16" />
+                        <Button Text="Speichern" 
+                                Clicked="OnSaveClicked"
+                                BackgroundColor="#007AFF"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="52"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="16" />
+                    </HorizontalStackLayout>
+
+                    <!-- Error Message -->
+                    <Frame x:Name="ErrorLabel" 
+                           BackgroundColor="#FFE5E5"
+                           BorderColor="#FFCCCC"
+                           CornerRadius="8"
+                           Padding="16"
+                           IsVisible="False">
+                        <Label x:Name="ErrorMessage"
+                               TextColor="#D32F2F"
+                               FontSize="14"
+                               LineBreakMode="WordWrap" />
+                    </Frame>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

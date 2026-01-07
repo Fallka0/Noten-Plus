@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="noten.Pages.AnalyticsPage"
+             Title="Analyse">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="24">
+            
+            <!-- Header -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Leistungsanalyse" 
+                       FontSize="28" 
+                       FontAttributes="Bold"
+                       TextColor="Black" />
+                <Label Text="Überblick über Ihre Notenentwicklung"
+                       FontSize="14"
+                       TextColor="#666666" />
+            </VerticalStackLayout>
+
+            <!-- Durchschnitts-Karte -->
+            <Frame BackgroundColor="#007AFF"
+                   CornerRadius="16"
+                   Padding="24"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <HorizontalStackLayout>
+                        <Label Text="⌀ Gesamtdurchschnitt" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                        <Label x:Name="OverallAverageLabel" 
+                               Text="—" 
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               HorizontalOptions="EndAndExpand"
+                               TextColor="White" />
+                    </HorizontalStackLayout>
+                    <Label x:Name="OverallCountLabel"
+                           Text="Basierend auf 0 Noten"
+                           FontSize="12"
+                           TextColor="#B3D9FF" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Fächer-Durchschnitte -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="16"
+                   Padding="24"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="16">
+                    <HorizontalStackLayout>
+                        <Label Text="📊 Fach-Durchschnitte" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Button Text="Alle"
+                                Clicked="OnShowAllSubjects"
+                                BackgroundColor="Transparent"
+                                TextColor="#007AFF"
+                                BorderWidth="0"
+                                FontSize="14"
+                                HorizontalOptions="EndAndExpand" />
+                    </HorizontalStackLayout>
+                    
+                    <Label Text="Durchschnittsnoten nach Fach"
+                           FontSize="14"
+                           TextColor="#666666" />
+
+                    <!-- Fächer-Liste -->
+                    <CollectionView x:Name="SubjectsCollection"
+                                    SelectionMode="None"
+                                    HeightRequest="200">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="x:String">
+                                <Frame BackgroundColor="#F8F8F8"
+                                       CornerRadius="12"
+                                       Padding="16"
+                                       Margin="0,4"
+                                       HasShadow="False">
+                                    <VerticalStackLayout Spacing="8">
+                                        <HorizontalStackLayout>
+                                            <Label Text="{Binding}" 
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="Black" />
+                                            <Label x:Name="SubjectAverageLabel"
+                                                   Text="—" 
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   TextColor="#007AFF" />
+                                        </HorizontalStackLayout>
+                                        
+                                        <!-- Progress Bar -->
+                                        <BoxView HeightRequest="8"
+                                                 BackgroundColor="#E5E5EA"
+                                                 CornerRadius="4">
+                                            <BoxView.WidthRequest>
+                                                <Binding Source="{x:Reference SubjectAverageLabel}"
+                                                         Path="Text"
+                                                         Converter="{StaticResource GradeToWidthConverter}" />
+                                            </BoxView.WidthRequest>
+                                        </BoxView>
+                                        
+                                        <!-- Note Count -->
+                                        <Label Text="0 Noten"
+                                               FontSize="12"
+                                               TextColor="#8E8E93" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Label Text="Niedrigere Zahlen = bessere Leistung"
+                           FontSize="12"
+                           TextColor="#8E8E93"
+                           HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Statistik-Karten -->
+            <Grid ColumnDefinitions="*,*" 
+                  RowDefinitions="Auto,Auto" 
+                  ColumnSpacing="12" 
+                  RowSpacing="12">
+
+                <!-- Beste Note -->
+                <Frame Grid.Column="0" Grid.Row="0"
+                       BackgroundColor="White"
+                       CornerRadius="12"
+                       Padding="16"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="🏆 Beste Note" 
+                               FontSize="14" 
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Label x:Name="BestGradeLabel" 
+                               Text="—" 
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#34C759" />
+                        <Label x:Name="BestGradeSubjectLabel"
+                               Text="Fach: —"
+                               FontSize="12"
+                               TextColor="#8E8E93" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Schlechteste Note -->
+                <Frame Grid.Column="1" Grid.Row="0"
+                       BackgroundColor="White"
+                       CornerRadius="12"
+                       Padding="16"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="📉 Schlechteste Note" 
+                               FontSize="14" 
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Label x:Name="WorstGradeLabel" 
+                               Text="—" 
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#FF3B30" />
+                        <Label x:Name="WorstGradeSubjectLabel"
+                               Text="Fach: —"
+                               FontSize="12"
+                               TextColor="#8E8E93" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Notenanzahl -->
+                <Frame Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                       BackgroundColor="White"
+                       CornerRadius="12"
+                       Padding="16"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="6">
+                        <HorizontalStackLayout>
+                            <Label Text="📈 Noten insgesamt" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="Black" />
+                            <Label x:Name="TotalGradesLabel" 
+                                   Text="0" 
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="EndAndExpand"
+                                   TextColor="Black" />
+                        </HorizontalStackLayout>
+                        <Label Text="Gesamte Noten eingetragen"
+                               FontSize="12"
+                               TextColor="#8E8E93" />
+                        <ProgressBar x:Name="GradesProgressBar"
+                                     Progress="0"
+                                     ProgressColor="#007AFF"
+                                     BackgroundColor="#E5E5EA"
+                                     HeightRequest="8"
+                                     Margin="0,8,0,0" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+
+            <!-- Letzte Noten -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="16"
+                   Padding="24"
+                   HasShadow="True"
+                   IsVisible="False"
+                   x:Name="RecentGradesFrame">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="📝 Letzte Noten" 
+                           FontSize="18" 
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+                    
+                    <CollectionView x:Name="RecentGradesCollection"
+                                    SelectionMode="None"
+                                    HeightRequest="120">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#F8F8F8"
+                                       CornerRadius="8"
+                                       Padding="12"
+                                       Margin="0,4"
+                                       HasShadow="False">
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding Subject}"
+                                               FontSize="14"
+                                               TextColor="Black"
+                                               VerticalOptions="Center" />
+                                        <Label Text="{Binding Value, StringFormat='{0:0.0}'}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="EndAndExpand"
+                                               TextColor="#007AFF"
+                                               VerticalOptions="Center" />
+                                        <Label Text="{Binding Date, StringFormat='{0:dd.MM.'}"
+                                               FontSize="12"
+                                               TextColor="#8E8E93"
+                                               VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Aktions-Buttons -->
+            <Grid ColumnDefinitions="*,*" 
+                  ColumnSpacing="12"
+                  Padding="0,12">
+                <Button Text="🔄 Aktualisieren"
+                        Clicked="OnRefreshClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#007AFF"
+                        BorderColor="#007AFF"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        HeightRequest="52"
+                        FontSize="16" />
+                <Button Text="🗑️ Alle löschen"
+                        Clicked="OnClearAllClicked"
+                        BackgroundColor="#FF3B30"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="52"
+                        FontSize="16" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
