@@ -6,20 +6,46 @@ namespace noten.Pages;
 
 public partial class DashboardPage : ContentPage
 {
+    
+    private GradesService gradesService;
     private SubjectsService subjectsService;
 
     public DashboardPage()
     {
         InitializeComponent();
-        AverageLabel.Text = "— (keine Daten)";
+
         
         // Service initialisieren
         subjectsService = SubjectsService.Instance;
-        
+        gradesService = GradesService.Instance;
+
         // CollectionView an Service binden
         SubjectsCollection.ItemsSource = subjectsService.Subjects;
+
         
+
+        // Auf Änderungen reagieren
+        gradesService.Grades.CollectionChanged += (s, e) => LoadData();
+        subjectsService.Subjects.CollectionChanged += (s, e) => LoadData();
+
         UpdateSubjectsView();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        LoadData();
+        UpdateSubjectsView();
+    }
+
+    private void LoadData()
+    {
+        // Gesamtdurchschnitt
+        var overallAverage = gradesService.GetOverallAverage();
+        OverallAverageLabel.Text = overallAverage > 0 ? overallAverage.ToString("0.00") : "—";
+        OverallCountLabel.Text = $"Basierend auf {gradesService.Grades.Count} Noten";
+
     }
 
     private void UpdateSubjectsView()
@@ -104,7 +130,7 @@ public partial class DashboardPage : ContentPage
         }
     }
 
-    // Event für Fach löschen (optional)
+    // Event für Fach löschen
     public async void OnRemoveSubjectClicked(object sender, EventArgs e)
     {
         if (sender is Button button && button.CommandParameter is string subject)

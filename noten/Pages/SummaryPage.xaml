@@ -5,7 +5,7 @@
              Title="Zusammenfassung">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
-            <Label Text="Eingabe erfolgreich" Style="{StaticResource Headline}" />
+            <Label Text="Eingabe erfolgreich" Style="{StaticResource Headline}" FontAttributes="Bold"/>
             <Frame>
                 <VerticalStackLayout Spacing="6">
                     <Label Text="Fach:" FontAttributes="Bold" TextColor="#000000"/>

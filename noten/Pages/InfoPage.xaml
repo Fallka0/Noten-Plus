@@ -5,19 +5,18 @@
              Title="Info">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
-            <Image Source="Resources/Images/logo.svg" HeightRequest="80" HorizontalOptions="Center" />
-            <Label Text="Noten +" Style="{StaticResource Headline}" />
-            <Label Text="Mykyta Pantelei, INF24I, Modul 322" />
-            <Label Text="Version 1.0.0 (06.11.2025)" />
+            <Image Source="mainlogo.png" HeightRequest="280" HorizontalOptions="Center" />
+            <Label Text="Mykyta Pantelei, INF24I, Modul 322" TextColor="Black"/>
+            <Label Text="Version 1.0.0 (06.11.2025)" TextColor="Black"/>
+    
 
             <Frame>
                 <VerticalStackLayout Spacing="6">
-                    <Label Text="Beschreibung" FontAttributes="Bold" />
-                    <Label Text="Noten + ist eine App zur Verwaltung von Schulnoten (UI-only Demo)." />
+                    <Label Text="Beschreibung" FontAttributes="Bold" TextColor="Black"/>
+                    <Label Text="Noten + ist eine App zur Verwaltung von Schulnoten (UI-only Demo)." TextColor="Black"/>
                 </VerticalStackLayout>
             </Frame>
 
-            <Button Text="FAQ" Clicked="OnFAQClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

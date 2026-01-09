@@ -11,7 +11,8 @@
                 <Label Text="Leistungsanalyse" 
                        FontSize="28" 
                        FontAttributes="Bold"
-                       TextColor="Black" />
+                       TextColor="Black" 
+                       Style="{StaticResource Headline}"/>
                 <Label Text="Überblick über Ihre Notenentwicklung"
                        FontSize="14"
                        TextColor="#666666" />
@@ -19,28 +20,36 @@
 
             <!-- Durchschnitts-Karte -->
             <Frame BackgroundColor="#007AFF"
-                   CornerRadius="16"
-                   Padding="24"
-                   HasShadow="True">
+       CornerRadius="16"
+       Padding="24"
+       HasShadow="True">
                 <VerticalStackLayout Spacing="8">
                     <HorizontalStackLayout>
                         <Label Text="⌀ Gesamtdurchschnitt" 
                                FontSize="16" 
                                FontAttributes="Bold"
-                               TextColor="White" />
+                               TextColor="White" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                        
+                   />
                         <Label x:Name="OverallAverageLabel" 
-                               Text="—" 
-                               FontSize="24"
-                               FontAttributes="Bold"
-                               HorizontalOptions="EndAndExpand"
-                               TextColor="White" />
+                   Text="—" 
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="White" 
+                   Padding="20"
+                   HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                   />
                     </HorizontalStackLayout>
                     <Label x:Name="OverallCountLabel"
-                           Text="Basierend auf 0 Noten"
-                           FontSize="12"
-                           TextColor="#B3D9FF" />
+               Text="Basierend auf 0 Noten"
+               FontSize="12"
+               TextColor="#B3D9FF" />
                 </VerticalStackLayout>
             </Frame>
+
 
             <!-- Fächer-Durchschnitte -->
             <Frame BackgroundColor="White"
@@ -49,17 +58,20 @@
                    HasShadow="True">
                 <VerticalStackLayout Spacing="16">
                     <HorizontalStackLayout>
-                        <Label Text="📊 Fach-Durchschnitte" 
+                        <Label Text="Fach-Durchschnitte" 
                                FontSize="18" 
                                FontAttributes="Bold"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
                         <Button Text="Alle"
                                 Clicked="OnShowAllSubjects"
                                 BackgroundColor="Transparent"
                                 TextColor="#007AFF"
                                 BorderWidth="0"
                                 FontSize="14"
-                                HorizontalOptions="EndAndExpand" />
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"/>
                     </HorizontalStackLayout>
                     
                     <Label Text="Durchschnittsnoten nach Fach"
@@ -180,16 +192,20 @@
                        HasShadow="True">
                     <VerticalStackLayout Spacing="6">
                         <HorizontalStackLayout>
-                            <Label Text="📈 Noten insgesamt" 
+                            <Label Text="📈 Noten insgesamt:" 
                                    FontSize="14" 
                                    FontAttributes="Bold"
-                                   TextColor="Black" />
+                                   TextColor="Black"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
                             <Label x:Name="TotalGradesLabel" 
                                    Text="0" 
                                    FontSize="20"
                                    FontAttributes="Bold"
-                                   HorizontalOptions="EndAndExpand"
-                                   TextColor="Black" />
+                                   TextColor="Black"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Padding="10"/>
                         </HorizontalStackLayout>
                         <Label Text="Gesamte Noten eingetragen"
                                FontSize="12"
@@ -232,17 +248,20 @@
                                         <Label Text="{Binding Subject}"
                                                FontSize="14"
                                                TextColor="Black"
-                                               VerticalOptions="Center" />
+                                               VerticalOptions="Center"
+                                               Margin="5"/>
                                         <Label Text="{Binding Value, StringFormat='{0:0.0}'}"
                                                FontSize="16"
                                                FontAttributes="Bold"
                                                HorizontalOptions="EndAndExpand"
                                                TextColor="#007AFF"
-                                               VerticalOptions="Center" />
+                                               VerticalOptions="Center"
+                                               Margin="5"/>
                                         <Label Text="{Binding Date, StringFormat='{0:dd.MM.'}"
                                                FontSize="12"
                                                TextColor="#8E8E93"
-                                               VerticalOptions="Center" />
+                                               VerticalOptions="Center" 
+                                               Margin="5"/>
                                     </HorizontalStackLayout>
                                 </Frame>
                             </DataTemplate>
@@ -253,25 +272,30 @@
 
             <!-- Aktions-Buttons -->
             <Grid ColumnDefinitions="*,*" 
-                  ColumnSpacing="12"
-                  Padding="0,12">
-                <Button Text="🔄 Aktualisieren"
-                        Clicked="OnRefreshClicked"
-                        BackgroundColor="Transparent"
-                        TextColor="#007AFF"
-                        BorderColor="#007AFF"
-                        BorderWidth="1"
-                        CornerRadius="8"
-                        HeightRequest="52"
-                        FontSize="16" />
-                <Button Text="🗑️ Alle löschen"
-                        Clicked="OnClearAllClicked"
-                        BackgroundColor="#FF3B30"
-                        TextColor="White"
-                        CornerRadius="8"
-                        HeightRequest="52"
-                        FontSize="16" />
+      ColumnSpacing="12"
+      Padding="0,12">
+
+                <Button Grid.Column="0"
+            Text="🔄 Aktualisieren"
+            Clicked="OnRefreshClicked"
+            BackgroundColor="Transparent"
+            TextColor="#007AFF"
+            BorderColor="#007AFF"
+            BorderWidth="1"
+            CornerRadius="8"
+            HeightRequest="52"
+            FontSize="16" />
+
+                <Button Grid.Column="1"
+            Text="🗑️ Alle löschen"
+            Clicked="OnClearAllClicked"
+            BackgroundColor="#FF3B30"
+            TextColor="White"
+            CornerRadius="8"
+            HeightRequest="52"
+            FontSize="16" />
             </Grid>
+
 
         </VerticalStackLayout>
     </ScrollView>

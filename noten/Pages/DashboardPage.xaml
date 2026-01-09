@@ -5,25 +5,35 @@
              Title="Dashboard">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-            
-            <!-- Durchschnitt Section -->
-            <Frame>
+
+            <Frame BackgroundColor="#007AFF"
+       CornerRadius="16"
+       Padding="24"
+       HasShadow="True">
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="Durchschnittsnote" 
-                           FontSize="16" 
-                           FontAttributes="Bold" 
-                           TextColor="Black" />
-                    <Label x:Name="AverageLabel" 
-                           Text="—" 
-                           FontSize="32" 
-                           HorizontalOptions="Center" 
-                           TextColor="Black" />
-                    <Label Text="Basierend auf allen eingetragenen Noten" 
-                           FontSize="12" 
-                           HorizontalOptions="Center" 
-                           TextColor="Gray" />
+                    <HorizontalStackLayout>
+                        <Label Text="⌀ Gesamtdurchschnitt" 
+                                FontSize="16" 
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"
+                               />
+                   <Label x:Name="OverallAverageLabel" 
+                   Text="—" 
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="White" 
+                   Padding="20"
+                   />
+                    </HorizontalStackLayout>
+                    <Label x:Name="OverallCountLabel"
+               Text="Basierend auf 0 Noten"
+               FontSize="12"
+               TextColor="#B3D9FF" />
                 </VerticalStackLayout>
             </Frame>
+
 
             <!-- Meine Fächer Section -->
             <Frame>
@@ -32,14 +42,18 @@
                         <Label Text="Meine Fächer" 
                                FontSize="16" 
                                FontAttributes="Bold" 
-                               TextColor="Black" />
-                        <!-- FEHLENDER BUTTON WIEDER HINZUFÜGEN -->
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                
                         <Button Text="Fach hinzufügen" 
                                 Clicked="OnAddSubjectClicked"
-                                HorizontalOptions="EndAndExpand" 
-                                BackgroundColor="Transparent"
-                                TextColor="#007AFF"
-                                BorderWidth="0"/>
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                Padding="10"
+                                TextColor="#ffffff"
+                                BorderWidth="0"
+                                Margin="15"/>
                     </HorizontalStackLayout>
 
                     <!-- Leerer State - wird angezeigt wenn keine Fächer -->
@@ -89,7 +103,7 @@
                        VerticalOptions="Center" 
                        TextColor="Black"
                        FontSize="16"/>
-                <Label Text="—" 
+                <Label Text="" 
                        VerticalOptions="Center"
                        HorizontalOptions="EndAndExpand"
                        TextColor="Gray"
@@ -119,7 +133,7 @@
                         <Button x:Name="AddGradeButton" 
                                 Text="Note hinzufügen" 
                                 Clicked="OnAddGradeClicked"
-                                BackgroundColor="#34C759"
+                                BackgroundColor="#44AFFD"
                                 TextColor="White"
                                 CornerRadius="8"
                                 HeightRequest="120">
@@ -137,7 +151,7 @@
                     <VerticalStackLayout Spacing="8">
                         <Button Text="Analytics" 
                                 Clicked="OnAnalyticsClicked"
-                                BackgroundColor="#5856D6"
+                                BackgroundColor="#1a5dfc"
                                 TextColor="White"
                                 CornerRadius="8"
                                 HeightRequest="120">

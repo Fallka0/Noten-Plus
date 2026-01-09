@@ -82,7 +82,7 @@ public partial class AddGradePage : ContentPage
                     SubjectPicker.Items.Add(subject);
                 }
                 
-                SubjectPicker.Title = "Fach auswählen...";
+                SubjectPicker.Title = "";
                 SubjectPicker.IsEnabled = true;
                 
                 if (SubjectPicker.SelectedIndex == -1 && subjectsService.Subjects.Count > 0)
@@ -157,7 +157,28 @@ public partial class AddGradePage : ContentPage
     var subjectParam = System.Net.WebUtility.UrlEncode(subject ?? string.Empty);
     await Shell.Current.GoToAsync($"/{nameof(SummaryPage)}?subject={subjectParam}&grade={gradeParam}&weight={weightValue}&date={WhenPicker.Date:yyyy-MM-dd}");
     }
-    
+
+    private bool _isSnapping;
+
+    private void OnWeightSliderChanged(object sender, ValueChangedEventArgs e)
+    {
+        if (_isSnapping)
+            return;
+
+        double[] snapPoints = { 25, 50, 75, 100 };
+
+        double nearest = snapPoints
+            .OrderBy(x => Math.Abs(x - e.NewValue))
+            .First();
+
+        _isSnapping = true;
+        WeightSlider.Value = nearest;
+        _isSnapping = false;
+
+        WeightLabel.Text = $"{(int)nearest}%";
+    }
+
+
     // Debug-Methode
     private void AddTestSubjects()
     {

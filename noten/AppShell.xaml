@@ -18,8 +18,15 @@
                       ContentTemplate="{DataTemplate pages:AnalyticsPage}" />
 
         <ShellContent Title="FAQ"
-                      Icon="information.png"
+                      Icon="faq.png"
                       ContentTemplate="{DataTemplate pages:FAQPage}" />
+
+        <ShellContent Title="Info"
+                      Icon="information.png"
+                      ContentTemplate="{DataTemplate pages:InfoPage}" />
+        <ShellContent Title="Login"
+              Icon="user.png"
+              ContentTemplate="{DataTemplate pages:LoginPage}" />
     </TabBar>
 
 </Shell>

@@ -36,13 +36,14 @@
                                CornerRadius="8"
                                Padding="16,0"
                                HasShadow="False"
-                               HeightRequest="52">
+                               HeightRequest="52"
+                               >
                             <Picker x:Name="SubjectPicker" 
                                     BackgroundColor="Transparent"
                                     TextColor="#000000"
                                     TitleColor="#8E8E93"
                                     FontSize="16"
-                                    HorizontalOptions="FillAndExpand" />
+                                     />
                         </Frame>
                         <Label Text="Wählen Sie ein Fach aus der Liste"
                                FontSize="12"
@@ -83,29 +84,38 @@
                     </VerticalStackLayout>
 
                     <!-- Gewichtung Section -->
+                  
                     <VerticalStackLayout Spacing="6">
                         <HorizontalStackLayout>
-                            <Label Text="Gewichtung" 
-                                   FontSize="16" 
+                            <Label Text="Gewichtung"
+                                   FontSize="16"
                                    FontAttributes="Bold"
-                                   TextColor="Black" />
-                            <Label x:Name="WeightLabel" 
-                                   Text="10%"
+                                   TextColor="Black"
+                                   Margin="20"/>
+
+                            <Label x:Name="WeightLabel"
+                                   Text="50%"
                                    FontSize="16"
                                    HorizontalOptions="EndAndExpand"
-                                   TextColor="#007AFF" />
+                                   TextColor="#007AFF"
+ />
                         </HorizontalStackLayout>
-                        <Slider x:Name="WeightSlider" 
-                                Minimum="0" 
-                                Maximum="100" 
-                                Value="10"
-                                MinimumTrackColor="#007AFF"
-                                MaximumTrackColor="#E5E5EA"
-                                ThumbColor="#007AFF" />
-                        <Label Text="Bestimmen Sie wie wichtig diese Note ist (0-100%)"
-                               FontSize="12"
-                               TextColor="#666666" />
+
+                        <Slider x:Name="WeightSlider"
+            Minimum="0"
+            Maximum="100"
+            Value="50"
+            ValueChanged="OnWeightSliderChanged"
+            MinimumTrackColor="#007AFF"
+            MaximumTrackColor="#E5E5EA"
+            ThumbColor="#007AFF"
+                                />
+
+                        <Label Text="Feste Stufen: 25 / 50 / 75 / 100 %"
+           FontSize="12"
+           TextColor="#666666" />
                     </VerticalStackLayout>
+
 
                     <!-- Buttons -->
                     <HorizontalStackLayout Spacing="12" 

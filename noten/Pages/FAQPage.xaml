@@ -3,21 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="noten.Pages.FAQPage"
              Title="FAQ">
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
-            <Label Text="FAQ" Style="{StaticResource Headline}" />
 
+            <Label Text="FAQ"
+                   Style="{StaticResource Headline}"
+                   FontAttributes="Bold" />
+
+            <!-- FAQ 1 -->
             <Frame>
-                <VerticalStackLayout>
-                    <Label Text="Wie speichere ich meine Noten?" FontAttributes="Bold" TextColor="#000000" />
-                    <Label Text="Diese Demo speichert Inhalte nicht dauerhaft; sie zeigt die UI-Elemente." TextColor="#000000" />
+                <VerticalStackLayout Spacing="8">
+
+                    <Grid>
+                        <Label Text="Wie speichere ich meine Noten?"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Label Text="▼"
+                               HorizontalOptions="End"
+                               TextColor="#666" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFaq1Tapped"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Label x:Name="Faq1Answer"
+                           Text="Diese Demo speichert Inhalte nicht dauerhaft; sie zeigt die UI-Elemente."
+                           TextColor="Black"
+                           IsVisible="False"/>
                 </VerticalStackLayout>
             </Frame>
 
+            <!-- FAQ 2 -->
             <Frame>
-                <VerticalStackLayout>
-                    <Label Text="Gibt es eine Exportfunktion?" FontAttributes="Bold" TextColor="#000000" />
-                    <Label Text="Export als CSV/PDF ist geplant; hier nur UI-Elemente vorhanden." TextColor="#000000" />
+                <VerticalStackLayout Spacing="8">
+
+                    <Grid>
+                        <Label Text="Gibt es eine Exportfunktion?"
+                               FontAttributes="Bold"
+                               TextColor="Black" />
+                        <Label Text="▼"
+                               HorizontalOptions="End"
+                               TextColor="#666" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFaq2Tapped"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Label x:Name="Faq2Answer"
+                           Text="Export als CSV/PDF ist geplant; hier nur UI-Elemente vorhanden."
+                           TextColor="Black"
+                           IsVisible="False"/>
                 </VerticalStackLayout>
             </Frame>
 

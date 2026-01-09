@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="noten.Pages.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        Padding="30"
+        Spacing="20">
+
+        <!-- Logo / Titel -->
+        <Label
+            Text="Noten +"
+            FontSize="32"
+            TextColor="Black"
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+            Style="{StaticResource Headline}"/>
+
+        <Frame
+            BackgroundColor="White"
+            CornerRadius="20"
+            Padding="20"
+            HasShadow="True">
+
+            <VerticalStackLayout Spacing="12">
+
+                <Label
+                    Text="Login"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    TextColor="Black"/>
+
+                <!-- Email -->
+                <Entry
+                    x:Name="EmailEntry"
+                    Placeholder="E-Mail"
+                    Keyboard="Email" />
+
+                <Label
+                    x:Name="EmailError"
+                    Text="Bitte E-Mail eingeben"
+                    TextColor="Red"
+                    FontSize="12"
+                    IsVisible="False" />
+
+                <!-- Passwort -->
+                <Entry
+                    x:Name="PasswordEntry"
+                    Placeholder="Passwort"
+                    IsPassword="True" />
+
+                <Label
+                    x:Name="PasswordError"
+                    Text="Bitte Passwort eingeben"
+                    TextColor="Red"
+                    FontSize="12"
+                    IsVisible="False" />
+
+                <!-- Login Fehler -->
+                <Label
+                    x:Name="LoginError"
+                    Text="E-Mail oder Passwort falsch"
+                    TextColor="Red"
+                    FontSize="13"
+                    HorizontalOptions="Center"
+                    IsVisible="False" />
+
+                <Button
+                    Text="Einloggen"
+                    BackgroundColor="#44AFFD"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Clicked="OnLoginClicked" />
+
+            </VerticalStackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

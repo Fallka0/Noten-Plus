@@ -82,12 +82,12 @@ public class GradesService
     
     public Grade GetBestGrade()
     {
-        return Grades.OrderBy(g => g.Value).FirstOrDefault();
+        return Grades.OrderByDescending(g => g.Value).FirstOrDefault();
     }
     
     public Grade GetWorstGrade()
     {
-        return Grades.OrderByDescending(g => g.Value).FirstOrDefault();
+        return Grades.OrderBy(g => g.Value).FirstOrDefault();
     }
     
     public Dictionary<string, double> GetAveragesByAllSubjects()
