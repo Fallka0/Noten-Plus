@@ -11,7 +11,8 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            // Start the app with the LoginPage; after a successful login the app sets the MainPage to the AppShell.
+            return new Window(new Pages.LoginPage());
         }
     }
 }

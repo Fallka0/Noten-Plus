@@ -67,6 +67,14 @@
                     HorizontalOptions="Center"
                     IsVisible="False" />
 
+                <!-- Merken Option -->
+                <HorizontalStackLayout>
+                <Label
+                    Text="Angemeldet bleiben" HorizontalOptions="Center" VerticalOptions="Center"
+                    FontSize="14" TextColor="Black" FontFamily="{StaticResource AppFontFamily}"></Label>
+                <CheckBox HorizontalOptions="Center" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
                 <Button
                     Text="Einloggen"
                     BackgroundColor="#44AFFD"

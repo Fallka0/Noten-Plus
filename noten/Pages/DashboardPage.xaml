@@ -139,7 +139,7 @@
                                 HeightRequest="120">
                             <Button.ImageSource>
                                 <FontImageSource Glyph="+" 
-                                                 FontFamily="MaterialIcons"
+                                                 FontFamily="SFPro"
                                                  Color="White"
                                                  Size="32"/>
                             </Button.ImageSource>

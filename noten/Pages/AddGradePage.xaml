@@ -91,13 +91,16 @@
                                    FontSize="16"
                                    FontAttributes="Bold"
                                    TextColor="Black"
-                                   Margin="20"/>
+                                   />
 
                             <Label x:Name="WeightLabel"
                                    Text="50%"
                                    FontSize="16"
-                                   HorizontalOptions="EndAndExpand"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"
                                    TextColor="#007AFF"
+                                   Padding="10, 0, 0, 0" 
  />
                         </HorizontalStackLayout>
 

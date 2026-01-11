@@ -27,5 +27,5 @@ androidpackagenamingpolicy=lowercasecrc64
 _nugetassetsfilehash=f95feb9657c8542ee523fda403ba9756f0ad580bfafa819232082cef6d3bc792
 typemapkind=strings-asm
 androidmanifestplaceholders=
-projectfullpath=c:\users\nikit\documents\programming\noten\noten\noten.csproj
+projectfullpath=c:\users\nikit\documents\github\noten-plus\noten\noten.csproj
 androidusedesignerassembly=true
